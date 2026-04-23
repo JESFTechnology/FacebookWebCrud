@@ -40,10 +40,10 @@
 					      <td>${posts.getUser().getName()}</td>
 					      <td>
 					      	<a class="bi bi-pencil-square" 
-					      	   href="${pageContext.request.contextPath}/users/update?userId=${posts.getId()}"></a>
+					      	   href="${pageContext.request.contextPath}/posts/update?postId=${posts.getId()}"></a>
 					      	
 					      	<a class="bi bi-trash"
-					      	   href="${pageContext.request.contextPath}/users/delete?userId=${posts.getId()}"></a>
+					      	   href="${pageContext.request.contextPath}/posts/delete?postId=${posts.getId()}"></a>
 					      </td>
 					    </tr>
 					</c:forEach>

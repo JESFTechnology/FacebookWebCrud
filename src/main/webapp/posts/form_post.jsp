@@ -17,7 +17,7 @@
 			<div class="col-md-6">
 				<form action="${pageContext.request.contextPath}/posts/save" 
 					  method="GET">
-					<h1>${post eq null ? "Criar" : "Atuializar"} um Post</h1>
+					<h1>${post eq null ? "Criar" : "Atualizar"} um Post</h1>
 					
 					<div class="mb-3">
 						<a class="bi bi-person"
@@ -26,7 +26,7 @@
 					
 					<input type="hidden" 
 					       name="user_id"
-					       value="${post.getUser().getId()}">
+					       value="${user.getId()}">
 					       
 					<input type="hidden" 
 					       name="post_id"
@@ -34,7 +34,7 @@
 					
 					<div class="mb-3">
 						<label for="post_content_id" class="form-label">
-							Olá ${post.getUser().getName()}, vamos fazer um post?
+							Olá ${user.getName()}, vamos fazer um post?
 						</label>
 						<textarea type="textarea" 
 						       id="post_content_id"
@@ -45,10 +45,10 @@
 					</div>
 					
 					<div class="mb-3">
-						<label for="post_datetime_id" class="form-label">
+						<label for="post_date_id" class="form-label">
 							Data do post
 						</label>
-						<input id="post_datetime_id" name="post_datetime" type="date" class="form-control">
+						<input id="post_date_id" name="post_date" type="date" class="form-control">
 					</div>
 					<script>
 					  // Get current date/time in local format
@@ -62,7 +62,7 @@
 					  const formattedDateTime = year+"-"+month+"-"+day;
 					  
 					  // Set the value
-					  document.getElementById('post_datetime_id').value = formattedDateTime;
+					  document.getElementById('post_date_id').value = formattedDateTime;
 					</script>
 
 					<!-- 
