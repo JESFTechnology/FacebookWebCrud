@@ -50,7 +50,7 @@
 				  </tbody>
 				</table>
 				
-				<a href="${pageContext.request.contextPath}/posts/form_post.jsp" 
+				<a href="${pageContext.request.contextPath}/posts/form_post" 
 				   class="btn btn-primary">
 					Cadastrar Postagem
 				</a>	

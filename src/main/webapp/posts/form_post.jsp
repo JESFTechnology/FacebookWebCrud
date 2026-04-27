@@ -1,87 +1,59 @@
-<jsp:directive.page contentType="text/html; charset=UTF-8" />
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap-icons.css">
 	<title>Cadastro de Postagem</title>
 </head>
+
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3"></div>
-			
-			<div class="col-md-6">
-				<form action="${pageContext.request.contextPath}/posts/save" 
-					  method="GET">
-					<h1>${post eq null ? "Criar" : "Atualizar"} um Post</h1>
-					
-					<div class="mb-3">
-						<a class="bi bi-person"
-				           href="${pageContext.request.contextPath}/posts">Postagens</a>
-					</div>
-					
-					<input type="hidden" 
-					       name="user_id"
-					       value="${user.getId()}">
-					       
-					<input type="hidden" 
-					       name="post_id"
-					       value="${post.getId()}"> 
-					
-					<div class="mb-3">
-						<label for="post_content_id" class="form-label">
-							Olá ${user.getName()}, vamos fazer um post?
-						</label>
-						<textarea type="textarea" 
-						       id="post_content_id"
-						       name="post_content"
-						       class="form-control"
-						       placeholder="Sua postagem"
-						       value="" rows="5"></textarea>
-					</div>
-					
-					<div class="mb-3">
-						<label for="post_date_id" class="form-label">
-							Data do post
-						</label>
-						<input id="post_date_id" name="post_date" type="date" class="form-control">
-					</div>
-					<script>
-					  // Get current date/time in local format
-					  const now = new Date();
-					  
-					  // Format as YYYY-MM-DDTHH:mm
-					  const year = now.getFullYear();
-					  const month = String(now.getMonth() + 1).padStart(2, '0');
-					  const day = String(now.getDate()).padStart(2, '0');
-					  
-					  const formattedDateTime = year+"-"+month+"-"+day;
-					  
-					  // Set the value
-					  document.getElementById('post_date_id').value = formattedDateTime;
-					</script>
 
-					<!-- 
+			<div class="col-md-6">
+				<form action="/facebook/posts/save" method="post">
+					<h1>${post == null ? "Criar" : "Atualizar"} um Post</h1>
+
 					<div class="mb-3">
-					  <label for="formFile" class="form-label">Uma foto para esse post?</label>
-					  <input class="form-control" type="file" accept=".png" id="formFile">
+						<a class="bi bi-person" href="${pageContext.request.contextPath}/posts">Posts</a>
 					</div>
-					 -->
-					
-					${post eq null ? "" : "" }
-		
+
+					<input type="hidden" name="post_id" value="${post.id}">
+
+					<div class="mb-3">
+						<label class="form-label">Usuário</label>
+						<select name="user_id" class="form-select" required>
+							<option value="">Selecione o autor</option>
+							<c:forEach var="u" items="${usuarios}">
+								<option value="${u.id}" ${post.user.id==u.id ? 'selected' : '' }>
+									${u.name}
+								</option>
+							</c:forEach>
+						</select>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label">Conteúdo da Postagem</label>
+						<textarea name="content" class="form-control" rows="5"
+							required>${post.content}</textarea>
+					</div>
+
 					<button type="submit" class="btn btn-primary">
-						${post eq null ? "Postar" : "Re-Postar"}
+						${post == null ? "Postar" : "Re-Postar"}
 					</button>
+
 				</form>
 			</div>
-			
+
 			<div class="col-md-3"></div>
-		</div>	
+		</div>
 	</div>
 </body>
+
 </html>
