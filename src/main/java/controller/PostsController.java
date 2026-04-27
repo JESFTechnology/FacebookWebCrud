@@ -35,6 +35,7 @@ public class PostsController extends HttpServlet {
 			break;
 		}
 		case "/facebook/posts/form_post": {
+			// Criei o form_post no intuito de carregar os usuários para fazer o post.
 			loadUsers(req);
 			RequestDispatcher rd = req.getRequestDispatcher("/posts/form_post.jsp");
 			rd.forward(req, resp);
@@ -61,7 +62,7 @@ public class PostsController extends HttpServlet {
 				req.setAttribute("post", new Post());
 			}
 			
-			loadUsers(req); // Carrega os usuários para o select
+			loadUsers(req);
 			RequestDispatcher rd = req.getRequestDispatcher("/posts/form_post.jsp");		
 			rd.forward(req, resp);
 			break;
@@ -155,7 +156,6 @@ public class PostsController extends HttpServlet {
 		String content = req.getParameter("content");
 		int userId = Integer.parseInt(req.getParameter("user_id"));
 		
-		// Se o id for nulo ou 0, cria um post novo, senão cria com o id de edição
 		Post post = (postId == null || postId == 0) ? new Post() : new Post(postId);
 		post.setContent(content);
 		post.setUser(new User(userId));
